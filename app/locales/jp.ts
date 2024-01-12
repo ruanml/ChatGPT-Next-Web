@@ -1,11 +1,23 @@
+import { getClientConfig } from "../config/client";
 import { SubmitKey } from "../store/config";
 import type { PartialLocaleType } from "./index";
+
+const isApp = !!getClientConfig()?.isApp;
 
 const jp: PartialLocaleType = {
   WIP: "この機能は開発中です",
   Error: {
-    Unauthorized:
-      "現在は未承認状態です。左下の設定ボタンをクリックし、アクセスパスワードかOpenAIのAPIキーを入力してください。",
+    Unauthorized: isApp
+      ? "無効な API Key 検出しました。[設定](/#/settings)画面にて API Key が正しく設定されているのかをご確認ください。"
+      : "現在は未承認状態です。アクセスキーか OpenAI の API キーを[設定](/#/settings)画面にて入力してください。",
+  },
+  Auth: {
+    Title: "パスワードが必要",
+    Tips: "アクセスキーが必要です。入力してください。",
+    SubTips: "または OpenAI Key or Google API キーを入力してください。",
+    Input: "アクセスキーをここに入力",
+    Confirm: "OK",
+    Later: "後で",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 通のチャット`,
@@ -154,10 +166,74 @@ const jp: PartialLocaleType = {
         return `今月は $${used} を使用しました。総額は $${total} です。`;
       },
       IsChecking: "確認中...",
-      Check: "再確認",
-      NoAccess: "APIキーまたはアクセスパスワードを入力して残高を表示",
+      Check: "再度確認",
+      NoAccess: "Open API Key またはアクセスキーを入力して残高を表示",
     },
+    Access: {
+      AccessCode: {
+        Title: "アクセスキー",
+        SubTitle: "アクセスキーが必要。",
+        Placeholder: "アクセスキーを入力してください。",
+      },
+      CustomEndpoint: {
+        Title: "カスタマイズ",
+        SubTitle: "自分の Azure また OpenAI を利用するか？",
+      },
+      Provider: {
+        Title: "モデルプロバイダー",
+        SubTitle: "プロバイダー切り替え",
+      },
+      OpenAI: {
+        ApiKey: {
+          Title: "API Key",
+          SubTitle: "自分の OpenAI Key を利用することでアクセスキー入力が不要になります。",
+          Placeholder: "OpenAI API Key",
+        },
 
+        Endpoint: {
+          Title: "I/F アドレス",
+          SubTitle: "デフォルトアドレス以外、http(s)://を必ず一緒に入力してください。",
+        },
+      },
+      Azure: {
+        ApiKey: {
+          Title: "I/Fキー",
+          SubTitle: "自分の Azure Key を使うことでアクセスキーが不要になります。",
+          Placeholder: "Azure API Key",
+        },
+
+        Endpoint: {
+          Title: "I/F アドレス",
+          SubTitle: "サンプル：",
+        },
+
+        ApiVerion: {
+          Title: "Azure API バージョン",
+          SubTitle: "バージョンを選択してください。",
+        },
+      },
+      Google: {
+        ApiKey: {
+          Title: "I/F キー",
+          SubTitle: "自分の Google AI Studio API Key を使うことで、アクセスキーが不要にあります。",
+          Placeholder: "Google AI Studio API Key",
+        },
+
+        Endpoint: {
+          Title: "I/F アドレス",
+          SubTitle: "リクエストパス含まない、サンプル：",
+        },
+
+        ApiVerion: {
+          Title: "Gemini-Pro API Version",
+          SubTitle: "バージョンを選択してください。",
+        },
+      },
+      CustomModel: {
+        Title: "モデル名カスタマイズ",
+        SubTitle: "モデル選択肢を増やすことができます。半角カンマーで分けてください。",
+      },
+    },
     Model: "モデル (model)",
     Temperature: {
       Title: "ランダム性 (temperature)",
