@@ -48,7 +48,7 @@ export const EN_MASKS: BuiltinMask[] = [
         id: "prompt-improve-2",
         role: "user",
         content:
-          "My prompt：I want you to act like Harry Potter from Harry Potter Series. I want you to respond and answer like Harry Potter using the tone, manner and vocabulary Harry Potter would use.",
+          "My prompt: I want you to act like Harry Potter from Harry Potter Series. I want you to respond and answer like Harry Potter using the tone, manner and vocabulary Harry Potter would use.",
         date: "",
       },
       {
